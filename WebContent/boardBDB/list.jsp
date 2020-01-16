@@ -7,6 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+section{
+	text-align: center;
+}
+#underboard a{
+	display: inline-block;
+	margin-right:5px;
+}
+#underboard form{
+	display: inline-block;
+}
+
+</style>
 </head>
 <body>
 <table>
@@ -83,9 +96,9 @@
   		 
 	%>
 	<br>
-	<!-- <a href="insert.do">추가</a> -->
-
-<!-- 여기서부터 검색 -->
+  <section id="underboard">
+	<a href="insert.do">NEW</a>
+	<!-- 여기서부터 검색 -->
 	<form method="post" action="list.do">
 		<select name="search">
 			<option value="board_no">NO</option>
@@ -95,8 +108,8 @@
 		<input type="text" name="searchtxt">
 		<input type="submit" value="SEARCH">
 	</form>
+  </section>		
 	
-	<a href="insert.do">NEW</a>
 
 </body>
 </html>
