@@ -76,7 +76,7 @@ public class BoardDAO {
 			else if(search.equals("member_id"))
 				sql.append(" where member_id like=?     ");
 		} //if
-		sql.append("               order by board_title       ");
+		sql.append("               order by board_no          ");
 		sql.append("             ) b                          ");
 		sql.append("        where rownum<=?                   ");
 		sql.append("      )                                   ");
@@ -110,6 +110,26 @@ public class BoardDAO {
 		}
 		
 		return list;
+	}
+	public void boardInsert(Connection conn, BoardDTO dto) 
+		throws SQLException
+	{
+		PreparedStatement pstmt=null;
+		StringBuilder sql=new StringBuilder();
+		sql.append(" insert into bdb_board(                   ");
+		sql.append("                      board_no            ");
+		sql.append("                      ,board_title        ");
+		sql.append("                      ,board_content      ");
+		sql.append("                       )                  ");
+		sql.append(" values(seq_board_no.nextval,?,?      ) ");
+		try {
+			pstmt=conn.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getBoard_title());
+			pstmt.setString(2, dto.getBoard_content());
+			pstmt.executeUpdate();
+		}finally {
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException e) {}
+		}
 	}
 	
 	

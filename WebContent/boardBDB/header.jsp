@@ -8,7 +8,7 @@
 <style>
 #wrap{
         border-bottom: 1px solid silver;
-        width: 100%; height: 100px;
+        width: 90%; height: 100px;
         text-align: center;
         font-family:inherit;
         font-size: 40px;

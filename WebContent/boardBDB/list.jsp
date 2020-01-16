@@ -96,7 +96,7 @@
 		<input type="submit" value="SEARCH">
 	</form>
 	
-	<a href="insert.jsp">NEW</a>
+	<a href="insert.do">NEW</a>
 
 </body>
 </html>
