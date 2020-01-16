@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bitcamp.DTO.BoardDTO;
+import com.bitcamp.DTO.MemberDTO;
 
 public class BoardDAO {
 	private static BoardDAO dao=new BoardDAO();
@@ -130,6 +131,28 @@ public class BoardDAO {
 		}finally {
 			if(pstmt!=null)try {pstmt.close();}catch(SQLException e) {}
 		}
+	}
+	public void memberInsert(Connection conn, MemberDTO memdto) 
+		throws SQLException
+	{
+		PreparedStatement pstmt=null;
+		StringBuilder sql=new StringBuilder();
+		sql.append(" insert into bdb_members(                 ");
+		sql.append("                        member_id         ");
+		sql.append("                        ,member_pwd       ");
+		sql.append("                        ,member_phone     ");
+		sql.append("                       )                  ");
+		sql.append(" values(?,?,?                           ) ");
+		try {
+			pstmt=conn.prepareStatement(sql.toString());
+			pstmt.setString(1, memdto.getMember_id());
+			pstmt.setString(2, memdto.getMember_pwd());
+			pstmt.setString(2, memdto.getMember_phone());
+			pstmt.executeUpdate();
+		}finally {
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException e) {}
+		}
+		
 	}
 	
 	

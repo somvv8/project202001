@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="signup.do">SignUp</a>
 </body>
 </html>

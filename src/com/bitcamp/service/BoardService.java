@@ -9,6 +9,7 @@ import javax.naming.NamingException;
 
 import com.bitcamp.DAO.BoardDAO;
 import com.bitcamp.DTO.BoardDTO;
+import com.bitcamp.DTO.MemberDTO;
 import com.bitcamp.comm.DBConnection;
 
 public class BoardService {
@@ -75,6 +76,24 @@ public class BoardService {
 			conn.setAutoCommit(false);
 			BoardDAO dao=BoardDAO.getDAO();
 			dao.boardInsert(conn,dto);
+			
+			conn.commit();
+		}catch(NamingException|SQLException e) {
+			System.out.println(e);
+			try {conn.rollback();} catch(Exception e2) {}
+		}finally {
+			if(conn!=null) try {conn.close();}catch(SQLException e) {}
+		}
+		
+	}
+	public void InsertMember(MemberDTO memdto) {
+		DBConnection db=DBConnection.getInstanse();
+		Connection conn=null;
+		try {
+			conn=db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao=BoardDAO.getDAO();
+			dao.memberInsert(conn,memdto);
 			
 			conn.commit();
 		}catch(NamingException|SQLException e) {
