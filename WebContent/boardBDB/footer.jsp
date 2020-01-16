@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<body>
+	<div>Copyright</div>
+</body>
 </body>
 </html>
