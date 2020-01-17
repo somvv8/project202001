@@ -67,25 +67,6 @@ public class BoardService {
 		return list;
 	}
 	
-	public void InsertData(BoardDTO dto) 
-	{
-		DBConnection db=DBConnection.getInstanse();
-		Connection conn=null;
-		try {
-			conn=db.getConnection();
-			conn.setAutoCommit(false);
-			BoardDAO dao=BoardDAO.getDAO();
-			dao.boardInsert(conn,dto);
-			
-			conn.commit();
-		}catch(NamingException|SQLException e) {
-			System.out.println(e);
-			try {conn.rollback();} catch(Exception e2) {}
-		}finally {
-			if(conn!=null) try {conn.close();}catch(SQLException e) {}
-		}
-		
-	}
 	public void InsertMember(MemberDTO memdto) {
 		DBConnection db=DBConnection.getInstanse();
 		Connection conn=null;
@@ -104,6 +85,7 @@ public class BoardService {
 		}
 		
 	}
+	
 	public boolean loginCheck(String member_id, String member_pwd) 
 	{
 		DBConnection db=DBConnection.getInstanse();
@@ -125,6 +107,47 @@ public class BoardService {
 		
 		
 		return result;
+	}
+	
+	public void InsertData(BoardDTO dto) 
+	{
+		DBConnection db=DBConnection.getInstanse();
+		Connection conn=null;
+		try {
+			conn=db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao=BoardDAO.getDAO();
+			dao.boardInsert(conn,dto);
+			
+			conn.commit();
+		}catch(NamingException|SQLException e) {
+			System.out.println(e);
+			try {conn.rollback();} catch(Exception e2) {}
+		}finally {
+			if(conn!=null) try {conn.close();}catch(SQLException e) {}
+		}
+		
+	}
+	
+	public BoardDTO detailData(int board_no) 
+	{
+		DBConnection db=DBConnection.getInstanse();
+		Connection conn=null;
+		BoardDTO dto=new BoardDTO();
+		try {
+			conn=db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao=BoardDAO.getDAO();
+				dao.readCheck(conn,board_no);
+				dto=dao.detailData(conn,board_no);
+			conn.commit();
+		}catch(NamingException|SQLException e) {
+			System.out.println(e);
+			try {conn.rollback();}catch(Exception e2) {}
+		}finally {
+			if(conn!=null) try {conn.close();}catch(SQLException e) {}
+		}
+		return dto;
 	}
 	
 	

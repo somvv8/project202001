@@ -33,7 +33,7 @@ section{
 		int startblock=(Integer)request.getAttribute("startblock");
 		int endblock=(Integer)request.getAttribute("endblock");
 		int totalpage=(Integer)request.getAttribute("totalpage");
-		String ID=(String)session.getAttribute("sessionId");
+		//String ID=(String)session.getAttribute("sessionId");
 	
 		if(list==null|| list.size()==0)
 		{%>
@@ -50,7 +50,7 @@ section{
 			<%}else{ %>
 				<td><%=dto.getBoard_title() %></td>
 			<%} %>
-			<td><%=dto.getBoard_run() %></td>
+			<%-- <td><%=dto.getBoard_run() %></td> --%>
 			<td><%=dto.getMember_id() %></td>
 			<td><%=dto.getBoard_readno() %></td></tr><br>
 		<%	

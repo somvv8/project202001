@@ -105,6 +105,7 @@ public class BoardDAO {
 				dto.setBoard_no(rs.getInt("board_no"));
 				dto.setBoard_title(rs.getString("board_title"));
 				dto.setMember_id(rs.getString("member_id"));
+				dto.setBoard_readno(rs.getInt("board_readno"));
 				list.add(dto);
 			}
 			
@@ -186,6 +187,57 @@ public class BoardDAO {
 			if(pstmt!=null)try {pstmt.close();}catch(SQLException e) {}
 		}
 		return result;
+	}
+	public void readCheck(Connection conn, int board_no) 
+		throws SQLException
+	{
+		StringBuilder sql=new StringBuilder();
+		sql.append(" update bdb_board                        ");
+		sql.append(" set board_readno=nvl(board_readno,0)+1  ");
+		sql.append(" where board_no=?                        ");
+		try(
+			PreparedStatement pstmt=conn.prepareStatement(sql.toString());
+			){
+			pstmt.setInt(1, board_no);
+			pstmt.executeUpdate();
+		}
+		
+	}
+	
+	public BoardDTO detailData(Connection conn, int board_no) 
+		throws SQLException
+	{
+		StringBuilder sql=new StringBuilder();
+		sql.append(" select                   ");
+		sql.append("       board_no           ");
+		sql.append("       ,board_title       ");
+		sql.append("       ,board_readno      ");
+		sql.append("       ,board_content     ");
+		sql.append("       ,member_id         ");
+		sql.append(" from bdb_board           ");
+		sql.append(" where board_no=?         ");
+		
+		ResultSet rs=null;
+		BoardDTO dto=new BoardDTO();
+		try(
+			PreparedStatement pstmt=conn.prepareStatement(sql.toString());
+			){
+			pstmt.setInt(1, board_no);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				dto.setBoard_no(rs.getInt("board_no"));
+				dto.setBoard_title(rs.getString("board_title"));
+				dto.setBoard_readno(rs.getInt("board_readno"));
+				dto.setBoard_content(rs.getString("board_content"));
+				dto.setMember_id(rs.getString("member_id"));
+				
+			}
+		}finally {
+			if(rs!=null) try {rs.close();}catch(SQLException e) {}
+		}
+		return dto;
+		
 	}
 	
 	
