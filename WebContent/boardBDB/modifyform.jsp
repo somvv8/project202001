@@ -30,15 +30,12 @@ ul li{
 			value="<%=dto.getBoard_no()%>" readonly>
 	</li>
 	<li>
-		<label for="board_title">TITLE</label>
 		<input type="text" name="board_title" id="board_title"
-			value="<%=dto.getBoard_title()%>"
-			placeholder="LIST에 공개되는 제목을 입력하세요" required="required">
+			value="<%=dto.getBoard_title()%>" required="required">
 	</li>
 	<li>
-		<label for="bcontent">내용</label>
-		<textarea row="3" cols="20" name="board_content" id="board_content"
-			placeholder="상세내용을 입력하세요" required="required">
+		<textarea row="3" cols="20" name="board_content" 
+			id="board_content" required="required">
 			<%=dto.getBoard_content()%></textarea>
 	</li>
 	<li>
@@ -46,5 +43,6 @@ ul li{
 		<input type="reset" value="BACK">
 	</li>
 </ul>
+</form>
 </body>
 </html>

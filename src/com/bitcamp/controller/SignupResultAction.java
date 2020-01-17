@@ -33,7 +33,7 @@ public class SignupResultAction implements Action {
 		
 		ActionForward f=new ActionForward();
 		f.setForward(true);
-		f.setUrl("list.do");
+		f.setUrl("/boardBDB/signupresult.jsp");
 		
 		return f;
 	}
