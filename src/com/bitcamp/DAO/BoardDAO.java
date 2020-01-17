@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.bitcamp.DTO.BoardDTO;
 import com.bitcamp.DTO.MemberDTO;
 
@@ -121,12 +123,15 @@ public class BoardDAO {
 		sql.append("                      board_no            ");
 		sql.append("                      ,board_title        ");
 		sql.append("                      ,board_content      ");
+		sql.append("                      ,member_id          ");
 		sql.append("                       )                  ");
-		sql.append(" values(seq_board_no.nextval,?,?      ) ");
+		sql.append(" values(seq_board_no.nextval,?,?,?      ) ");
+		
 		try {
 			pstmt=conn.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getBoard_title());
 			pstmt.setString(2, dto.getBoard_content());
+			pstmt.setString(3, dto.getMember_id());
 			pstmt.executeUpdate();
 		}finally {
 			if(pstmt!=null)try {pstmt.close();}catch(SQLException e) {}
@@ -153,6 +158,34 @@ public class BoardDAO {
 			if(pstmt!=null)try {pstmt.close();}catch(SQLException e) {}
 		}
 		
+	}
+	public boolean memberLogin(Connection conn
+		, String member_id, String member_pwd) 
+				throws SQLException
+	{
+		boolean result=false;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		StringBuilder sql=new StringBuilder();
+		sql.append(" select                   ");
+		sql.append("       member_id          ");
+		sql.append("       ,member_pwd        ");
+		sql.append(" from bdb_members         ");
+		sql.append(" where                    ");
+		sql.append("      member_id=?         ");
+		sql.append("      and member_pwd=?    ");
+		try {
+			pstmt=conn.prepareStatement(sql.toString());
+			pstmt.setString(1, member_id);
+			pstmt.setString(2, member_pwd);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=true;
+			}
+		}finally {
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException e) {}
+		}
+		return result;
 	}
 	
 	

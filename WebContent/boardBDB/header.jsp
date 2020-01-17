@@ -30,12 +30,12 @@
    <div id="wrap">
        <p>WELLCOME BDB</p>
    </div>
-   <c:if test="${sessionScope.sessionID==null }">
+   <c:if test="${sessionScope.sessionId==null }">
    <ul>
    	<li>LogIn</li><li>SignUp</li>
    	</ul>
    </c:if>
-   <c:if test="${sessionScope.sessionID!=null }">
+   <c:if test="${sessionScope.sessionId!=null }">
    <ul>
    	<li>LogOut</li><li>MyInfo</li>
    	</ul>

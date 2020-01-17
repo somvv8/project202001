@@ -7,6 +7,14 @@ public class BoardDTO {
 	private int board_readno;
 	private String board_content;
 	private String member_id;
+	private String ID;
+	
+	public String getID() {
+		return ID;
+	}
+	public void setID(String iD) {
+		ID = iD;
+	}
 	public int getBoard_no() {
 		return board_no;
 	}

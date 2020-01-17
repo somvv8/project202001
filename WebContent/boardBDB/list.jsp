@@ -22,10 +22,10 @@ section{
 </style>
 </head>
 <body>
-<table>
+<div>
 	<thead><tr><th>NO</th><th>TITLE</th>
 	<th>RUN</th><th>WRITER</th>
-	<th>조회수</th></tr></thead>
+	<th>조회수</th></tr><br></thead>
 	<tbody>
 	<%
 		List<BoardDTO> list=(List<BoardDTO>)request.getAttribute("list");
@@ -33,6 +33,7 @@ section{
 		int startblock=(Integer)request.getAttribute("startblock");
 		int endblock=(Integer)request.getAttribute("endblock");
 		int totalpage=(Integer)request.getAttribute("totalpage");
+		String ID=(String)session.getAttribute("sessionId");
 	
 		if(list==null|| list.size()==0)
 		{%>
@@ -43,9 +44,12 @@ section{
 			{
 		%>
 			<tr><td><%=dto.getBoard_no() %></td>
-			<!-- 자료수정시 Bno값에따라 자료를 넘겨줌 -->
-			<td><a href="detail.do?no=<%=dto.getBoard_no()%>">
+			<%if(session.getAttribute("sessionId")!=null) {%>
+				<td><a href="detail.do?no=<%=dto.getBoard_no()%>">
 				<%=dto.getBoard_title() %></a></td>
+			<%}else{ %>
+				<td><%=dto.getBoard_title() %></td>
+			<%} %>
 			<td><%=dto.getBoard_run() %></td>
 			<td><%=dto.getMember_id() %></td>
 			<td><%=dto.getBoard_readno() %></td></tr><br>
@@ -56,7 +60,7 @@ section{
 	%>
 	
 	</tbody>
-</table><br>
+</div><br>
 
 <%
 		if(startblock>1)

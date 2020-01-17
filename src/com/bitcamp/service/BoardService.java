@@ -104,6 +104,28 @@ public class BoardService {
 		}
 		
 	}
+	public boolean loginCheck(String member_id, String member_pwd) 
+	{
+		DBConnection db=DBConnection.getInstanse();
+		Connection conn=null;
+		boolean result=false;
+		try {
+			conn=db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao=BoardDAO.getDAO();
+			result=dao.memberLogin(conn,member_id,member_pwd);
+			
+			conn.commit();
+		}catch(NamingException|SQLException e) {
+			System.out.println(e);
+			try {conn.rollback();} catch(Exception e2) {}
+		}finally {
+			if(conn!=null)try {conn.close();}catch(SQLException e) {}
+		}
+		
+		
+		return result;
+	}
 	
 	
 	

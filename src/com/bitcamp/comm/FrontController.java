@@ -82,7 +82,7 @@ public class FrontController extends HttpServlet {
 		String path=request.getServletPath();
 		Action act=null;
 		act=ht.get(path);
-		System.out.println("object: "+act);
+		/*System.out.println("object: "+act);*/
 		
 		ActionForward forward=act.execute(request, response);
 		if(forward.isForward()) 

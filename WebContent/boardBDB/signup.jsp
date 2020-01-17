@@ -8,8 +8,8 @@
 </head>
 <body>
 <form method="post" action="signupresult.do" >
-	<!-- 정보 입력받아서 joinProcess에 전달 -->
-		<table>
+	
+		<div>
 			<tr>
 				<td>ID</td>
 				<td><input type="text" name="member_id"></td>
@@ -26,7 +26,7 @@
 				<td>PHONE</td>
 				<td><input type="text" name="member_phone"></td>
 			</tr>
-		</table>
+		</div>
 		<br><input type="submit" value="SIGN UP">
 	</form>
 </body>

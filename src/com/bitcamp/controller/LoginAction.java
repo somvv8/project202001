@@ -1,6 +1,7 @@
 package com.bitcamp.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,34 +10,38 @@ import javax.servlet.http.HttpSession;
 
 import com.bitcamp.comm.Action;
 import com.bitcamp.comm.ActionForward;
-import com.bitcamp.DTO.BoardDTO;
-//import com.bitcamp.service.BoardService;
 import com.bitcamp.service.BoardService;
 
-public class InsertResultAction implements Action {
+public class LoginAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request
 		, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		HttpSession session=request.getSession();
-		String board_title=request.getParameter("board_title");
-		String board_content=request.getParameter("board_content");
-		String ID=(String)session.getAttribute("sessionId");
+		response.setContentType("text/html;charset=utf-8");
 		
-		BoardDTO dto=new BoardDTO();
-		dto.setBoard_title(board_title);
-		dto.setBoard_content(board_content);
-		dto.setMember_id(ID);
+		String member_id=request.getParameter("member_id");
+		String member_pwd=request.getParameter("member_pwd");
 		
 		BoardService service=BoardService.getService();
-		service.InsertData(dto);
+		boolean result=service.loginCheck(member_id,member_pwd);
+		
+		PrintWriter out=response.getWriter();
+		if(result) {
+			HttpSession session=request.getSession();
+			session.setAttribute("sessionId",member_id);
+			session.setAttribute("sessionPwd",member_pwd);
+			System.out.println(member_id+"님이 로그인하였습니다!!!");
+		}else {
+			out.println("CHECK YOUR ID or PASSWARD");
+		}
+		
+		/*return null;*/
 		
 		ActionForward f=new ActionForward();
 		f.setForward(true);
 		f.setUrl("list.do");
-		
 		return f;
 	}
 

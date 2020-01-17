@@ -12,7 +12,7 @@
 <c:set var="dto" value="${requestScope.dto }"></c:set>
 	<tr>
 	<td>${dto.board_no }</td>
-	<td>sessionId</td>
+	<td>${dto.member_id}</td>
 	<td>${dto.board_title }</td>
 	<td><a href="list.do">목록으로</a></td>
 	<td><a href="insert.do">수정</a></td>
