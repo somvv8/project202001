@@ -149,6 +149,46 @@ public class BoardService {
 		}
 		return dto;
 	}
+	public int deleteData(int board_no) 
+	{
+		DBConnection db=DBConnection.getInstanse();
+		Connection conn=null;
+		int result=0;
+		try {
+			conn=db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao=BoardDAO.getDAO();
+			result=dao.delData(conn,board_no);
+			
+			conn.commit();
+		}catch(NamingException|SQLException e) {
+			System.out.println(e);
+			try {conn.rollback();} catch(Exception e2) {}
+		}finally {
+			if(conn!=null) try {conn.close();} catch(SQLException e2) {}
+		}
+		return 1;
+	}
+	public int modifyData(BoardDTO dto) 
+	{
+		DBConnection db=DBConnection.getInstanse();
+		Connection conn=null;
+		int result=0;
+		try {
+			conn=db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao=BoardDAO.getDAO();
+			result=dao.boardModify(conn,dto);
+			
+			conn.commit();
+		}catch(NamingException|SQLException e) {
+			System.out.println(e);
+			try {conn.rollback();} catch(Exception e2) {}
+		}finally {
+			if(conn!=null) try {conn.close();} catch(SQLException e2) {}
+		}
+		return result;
+	}
 	
 	
 	

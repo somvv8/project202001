@@ -33,7 +33,6 @@ section{
 		int startblock=(Integer)request.getAttribute("startblock");
 		int endblock=(Integer)request.getAttribute("endblock");
 		int totalpage=(Integer)request.getAttribute("totalpage");
-		//String ID=(String)session.getAttribute("sessionId");
 	
 		if(list==null|| list.size()==0)
 		{%>

@@ -240,6 +240,65 @@ public class BoardDAO {
 		
 	}
 	
+	public int delData(Connection conn, int board_no) 
+		throws SQLException
+	{
+		PreparedStatement pstmt=null;
+		StringBuilder sql=new StringBuilder();
+		sql.append(" delete from bdb_board             ");
+		sql.append(" where board_no=?                  ");
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, board_no);
+			result=pstmt.executeUpdate();
+		}finally {
+			if(pstmt!=null) try {pstmt.close();}catch(SQLException e) {}
+		}
+		
+		return result;
+	}
+	
+	public int boardModify(Connection conn, BoardDTO dto) 
+		throws SQLException
+	{
+		int result=0;
+		StringBuilder sql=new StringBuilder();
+		sql.append(" update bdb_board            ");
+		sql.append(" set                         ");
+		sql.append("    board_title=?            ");
+		sql.append("    ,board_content=?         ");
+		sql.append("    ,member_id=?             ");
+		sql.append(" where                       ");
+		sql.append("      board_no=?             ");
+		try(
+			PreparedStatement pstmt=conn.prepareStatement(sql.toString());
+			){
+			pstmt.setString(1, dto.getBoard_title());
+			pstmt.setString(2, dto.getBoard_content());
+			pstmt.setString(3, dto.getMember_id());
+			pstmt.setInt(4, dto.getBoard_no());
+			result=pstmt.executeUpdate();
+		}
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

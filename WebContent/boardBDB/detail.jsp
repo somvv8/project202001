@@ -12,10 +12,14 @@
 <section class="detail">
 <%
 	BoardDTO dto=(BoardDTO)request.getAttribute("dto");
+	String ID=(String)session.getAttribute("sessionId");
+	String name=dto.getMember_id();
 %>
 <a href="list.do">목록으로</a>
-<a href="insert.do">수정</a>
-<a href="#">삭제</a>
+<%if(ID.equals(name)) {%>
+<a href="modify.do?no=<%=dto.getBoard_no() %>">수정</a>
+<a href="delete.do?no=<%=dto.getBoard_no() %>">삭제</a>
+<%} %>
 
 <ul>
 	<div id="detailhead">

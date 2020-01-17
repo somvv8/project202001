@@ -28,7 +28,7 @@
 <body>
 <body>
    <div id="wrap">
-       <p>WELLCOME BDB</p>
+       <p><a href="index.do">WELLCOME BDB</a></p>
    </div>
    <c:if test="${sessionScope.sessionId==null }">
    <ul>
