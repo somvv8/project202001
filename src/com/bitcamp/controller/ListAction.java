@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bitcamp.DTO.BoardDTO;
 import com.bitcamp.comm.Action;
@@ -18,6 +19,9 @@ public class ListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
+		
 		request.setCharacterEncoding("utf-8");
 		int currpage=1;
 		String curr=request.getParameter("curr");
@@ -61,7 +65,7 @@ public class ListAction implements Action {
 		//여기부터 컨트롤러로~!
 		ActionForward forward=new ActionForward();
 		forward.setForward(true);
-		forward.setUrl("/boardBDB/list.jsp");
+		forward.setUrl("/boardBDB/main.jsp?contentpage=list.jsp");
 		return forward;
 	}
 

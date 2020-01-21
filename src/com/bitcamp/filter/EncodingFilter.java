@@ -11,7 +11,12 @@ import javax.servlet.annotation.WebFilter;
 
 @WebFilter("*.do")
 public class EncodingFilter implements Filter {
-
+	
+	/*@Override
+	public void destroy() {
+		System.out.println("filter destroy!!!");
+	}*/
+	
 	@Override
 	public void doFilter(ServletRequest request
 			  , ServletResponse response, FilterChain filterchain)
@@ -21,6 +26,8 @@ public class EncodingFilter implements Filter {
 		filterchain.doFilter(request, response);
 	
 	}
+	
+	
 
 }
 

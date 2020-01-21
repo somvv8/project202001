@@ -17,7 +17,7 @@ public class SignupAction implements Action {
 			throws ServletException, IOException {
 		ActionForward f=new ActionForward();
 		f.setForward(true);
-		f.setUrl("/boardBDB/signup.jsp");
+		f.setUrl("/boardBDB/main.jsp?contentpage=signup.jsp");
 		
 		return f;
 	}

@@ -23,6 +23,7 @@ public class SignupResultAction implements Action {
 		String member_pwd=request.getParameter("member_pwd");
 		String member_phone=request.getParameter("member_phone");
 		
+		
 		MemberDTO memdto=new MemberDTO();
 		memdto.setMember_id(member_id);
 		memdto.setMember_pwd(member_pwd);
@@ -33,7 +34,7 @@ public class SignupResultAction implements Action {
 		
 		ActionForward f=new ActionForward();
 		f.setForward(true);
-		f.setUrl("/boardBDB/signupresult.jsp");
+		f.setUrl("/boardBDB/main.jsp?contentpage=signupresult.jsp");
 		
 		return f;
 	}

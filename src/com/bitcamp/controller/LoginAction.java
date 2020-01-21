@@ -31,7 +31,6 @@ public class LoginAction implements Action {
 		if(result) {
 			HttpSession session=request.getSession();
 			session.setAttribute("sessionId",member_id);
-			session.setAttribute("sessionPwd",member_pwd);
 			System.out.println(member_id+"님이 로그인하였습니다!!!");
 		}else {
 			out.println("CHECK YOUR ID or PASSWARD");

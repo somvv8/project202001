@@ -76,6 +76,7 @@ public class BoardService {
 			BoardDAO dao=BoardDAO.getDAO();
 			dao.memberInsert(conn,memdto);
 			
+			
 			conn.commit();
 		}catch(NamingException|SQLException e) {
 			System.out.println(e);

@@ -24,7 +24,7 @@ public class DetailAction implements Action {
 		
 		ActionForward f=new ActionForward();
 		f.setForward(true);
-		f.setUrl("/boardBDB/detail.jsp");
+		f.setUrl("/boardBDB/main.jsp?contentpage=detail.jsp");
 		
 		return f;
 	}
