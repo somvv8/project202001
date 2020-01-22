@@ -12,7 +12,7 @@
 }
 </style>
 <script>
-setTimeout("window.location.href='index.jsp'",3000);
+setTimeout("window.location.href='main.jsp?contentpage=index.jsp'",3000);
 </script>
 </head>
 <body>

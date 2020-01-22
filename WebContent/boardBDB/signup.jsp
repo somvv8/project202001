@@ -10,6 +10,7 @@ body{
 	text_align:center;
 }
 .sign{
+	margin-left:17%;
     width:60%; position: relative;
     border: 2px solid silver;
     padding-top: 50px;
@@ -25,7 +26,7 @@ body{
 }
 #id_check{
     position: absolute;
-    top:20px;
+    top:43px;
     width:80px; height:35px;
     margin:0px 0px 30px 17px;
     background-color:white;
@@ -53,6 +54,7 @@ body{
 #pw_mismatched{
     width:330px; height:30px;
     margin-bottom:30px;
+    margin-left:40%;
     font-size:15px;
     background-color: rgb(255,0,0,0.6);
     padding-top: 7px;
@@ -61,7 +63,7 @@ body{
     letter-spacing:5px;
     width:330px;
     height:30px;
-    margin:0px 0px 30px 0px;
+    margin:20px 0px 30px 0px;
     background-color:gray;
     font-size:25px;
 }

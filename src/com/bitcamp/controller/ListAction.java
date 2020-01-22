@@ -18,11 +18,8 @@ public class ListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		
-		
 		request.setCharacterEncoding("utf-8");
+		
 		int currpage=1;
 		String curr=request.getParameter("curr");
 		if(curr!=null)
@@ -36,7 +33,7 @@ public class ListAction implements Action {
 		
 		BoardService service=BoardService.getService();
 		int totalcount=service.getCount(search, txtsearch);
-		int pagepercount=3; //1페이지 보여줄 자료
+		int pagepercount=10; //1페이지 보여줄 자료
 		int totalpage=(int)Math.ceil((float)totalcount/pagepercount);
 		int startrow=(currpage-1)*pagepercount+1;
 		int endrow=startrow+pagepercount-1;
@@ -44,7 +41,7 @@ public class ListAction implements Action {
 			endrow=totalcount;
 		
 		int blockcount=5;
-		int startblock=(currpage-1)/blockcount*blockcount+1;
+		int startblock=((currpage-1)/blockcount)*blockcount+1;
 		int endblock=startblock+blockcount-1;
 		if(endblock>totalpage)
 			endblock=totalpage;
@@ -53,7 +50,6 @@ public class ListAction implements Action {
 		List<BoardDTO> list=service.getList(startrow, endrow, search, txtsearch);
 		
 		request.setAttribute("list", list);
-		System.out.println("data: "+list.size());
 		request.setAttribute("currpage", currpage);
 		request.setAttribute("startblock", startblock);
 		request.setAttribute("endblock", endblock);

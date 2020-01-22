@@ -48,7 +48,10 @@ ol li{
 	font-size:20px;
 }
 #submit{
-	margin-top:50px;
+	margin-top:30PX;
+}
+#signup_btn{
+	margin-top:40px;
 }
 
 </style>
@@ -77,6 +80,9 @@ ol li{
 			placeholder="비밀번호를 입력하세요"><br>
 			
 		<input type="submit" value="LOG IN" id="submit">
+	</form>
+	<form method="post" action="signup.do">
+		<input type="submit" id="signup_btn" value="SIGN UP"> 
 	</form>
 
 </div>

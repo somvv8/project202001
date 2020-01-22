@@ -30,11 +30,11 @@ public class BoardDAO {
 		if(!search.equals("")&&!txtsearch.equals("")) 
 		{
 			if(search.equals("board_no"))
-				sql.append(" where board_no like=?      ");
+				sql.append(" where board_no like ?      ");
 			else if(search.equals("board_title"))
-				sql.append(" where board_title like=?   ");
+				sql.append(" where board_title like ?   ");
 			else if(search.equals("member_id"))
-				sql.append(" where member_id like=?     ");
+				sql.append(" where member_id like ?     ");
 		} //if
 		
 		ResultSet rs=null;
@@ -74,11 +74,11 @@ public class BoardDAO {
 		if(!search.equals("")&&!txtsearch.equals("")) 
 		{
 			if(search.equals("board_no"))
-				sql.append(" where board_no like=?      ");
+				sql.append(" where board_no like ?      ");
 			else if(search.equals("board_title"))
-				sql.append(" where board_title like=?   ");
+				sql.append(" where board_title like ?   ");
 			else if(search.equals("member_id"))
-				sql.append(" where member_id like=?     ");
+				sql.append(" where member_id like ?     ");
 		} //if
 		sql.append("               order by board_no          ");
 		sql.append("             ) b                          ");
