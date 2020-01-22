@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
 body{
 	text_align:center;
@@ -80,34 +79,6 @@ body{
 
 
 </style>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</head>
-<body>
-<section class="sign">
-<form method="post" action="signupresult.do" 
-		name="signup" >
-		<label for="member_id">ID</label>
-		<input type="text" name="member_id" id="member_id">
-		
-		<input type="button" id="id_check" class="btn_check" value="중복확인"><br>
-			
-		<label for="member_pwd">PASSWARD</label>
-		<input type="password" name="member_pwd" id="member_pwd" class="pw_class"><br>
-		
-		<label for="member_pwdck">PASSWARD_CK</label>
-		<input type="password" name="member_pwdck" id="member_pwdck" class="pw_class"><br>
-		
-		<div id="pw_mismatched">비밀번호가 일치하지 않습니다</div>
-			
-		<label for="member_phone">PHONE</label>
-		<input type="text" name="member_phone" id="member_phone"><br>
-			
-		><input type="submit" value="SIGN UP" id="signup_btn" class="btn_sign">
-</form>
-</section>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
 $(document).ready(function(){
 	$('#id_check').click(function(){
@@ -164,10 +135,33 @@ $(document).ready(function(){
         }
     });
 	
-	
 });
 
 </script>
+</head>
+<body>
+<section class="sign">
+<form method="post" action="signupresult.do" 
+		name="signup" >
+		<label for="member_id">ID</label>
+		<input type="text" name="member_id" id="member_id">
+		
+		<input type="button" id="id_check" class="btn_check" value="중복확인"><br>
+			
+		<label for="member_pwd">PASSWARD</label>
+		<input type="password" name="member_pwd" id="member_pwd" class="pw_class"><br>
+		
+		<label for="member_pwdck">PASSWARD_CK</label>
+		<input type="password" name="member_pwdck" id="member_pwdck" class="pw_class"><br>
+		
+		<div id="pw_mismatched">비밀번호가 일치하지 않습니다</div>
+			
+		<label for="member_phone">PHONE</label>
+		<input type="text" name="member_phone" id="member_phone"><br>
+			
+		><input type="submit" value="SIGN UP" id="signup_btn" class="btn_sign">
+</form>
+</section>
 </body>
 </html>
 

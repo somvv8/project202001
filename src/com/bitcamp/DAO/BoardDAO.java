@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bitcamp.DTO.BoardDTO;
 import com.bitcamp.DTO.MemberDTO;
+import com.bitcamp.DTO.RepDTO;
 
 public class BoardDAO {
 	private static BoardDAO dao=new BoardDAO();
@@ -281,6 +282,78 @@ public class BoardDAO {
 			result=pstmt.executeUpdate();
 		}
 		return result;
+		
+	}
+	public void repboardAdd(Connection conn, RepDTO repdto) 
+		throws SQLException
+	{
+		StringBuilder sql=new StringBuilder();
+		sql.append(" insert into bdb_reple(                ");
+		sql.append("                      rep_no           ");
+		sql.append("                      ,rep_id          ");
+		sql.append("                      ,rep_content     ");
+		sql.append("                      ,board_no)       ");
+		sql.append(" values( seq_rep_no.nextval,?,?,? )    ");
+		
+		PreparedStatement pstmt=null;
+		try
+		{
+			pstmt=conn.prepareStatement(sql.toString());
+			
+			pstmt.setString(1, repdto.getRep_id());
+			pstmt.setString(2, repdto.getRep_content());
+			pstmt.setInt(3, repdto.getBoard_no());
+			pstmt.executeUpdate();
+			
+		}finally {
+			if(pstmt!=null) try {pstmt.close();}catch(SQLException e) {}
+		}
+		
+	}
+	public List<RepDTO> subDetail(Connection conn, int no) 
+			throws SQLException
+	{
+		StringBuilder sql=new StringBuilder();
+		sql.append(" select rep_no              ");
+		sql.append("        ,rep_id             ");
+		sql.append("        ,rep_content        ");
+		sql.append("        ,board_no           ");
+		sql.append(" from bdb_reple             ");
+		sql.append(" where board_no=?           ");
+		
+		ArrayList<RepDTO> arr=new ArrayList<>();
+		ResultSet rs=null;
+		try(
+			PreparedStatement pstmt
+				=conn.prepareStatement(sql.toString());
+			){
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			while(rs.next()) 
+			{
+				RepDTO repdto=new RepDTO();
+				repdto.setRep_no(rs.getInt("rep_no"));
+				repdto.setRep_id(rs.getString("rep_id"));
+				repdto.setRep_content(rs.getString("rep_content"));
+				repdto.setBoard_no(rs.getInt("board_no"));
+				arr.add(repdto);
+			}
+		}
+		
+		return arr;
+		
+	}
+	public void subDelete(Connection conn, int rep_no) 
+		throws SQLException
+	{
+		StringBuilder sql=new StringBuilder();
+		sql.append(" delete from bdb_reple          ");
+		sql.append(" where rep_no=?                 ");
+		try(PreparedStatement pstmt=conn.prepareStatement(sql.toString()))
+		{
+			pstmt.setInt(1, rep_no);
+			pstmt.executeUpdate();
+		}
 		
 	}
 	

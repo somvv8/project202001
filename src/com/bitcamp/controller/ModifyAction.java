@@ -24,7 +24,7 @@ public class ModifyAction implements Action {
 		
 		ActionForward f=new ActionForward();
 		f.setForward(true);
-		f.setUrl("/boardBDB/modifyform.jsp");
+		f.setUrl("/boardBDB/main.jsp?contentpage=modifyform.jsp");
 		
 		return f;
 	}

@@ -1,3 +1,4 @@
+<%@page import="com.bitcamp.DTO.RepDTO"%>
 <%@page import="com.bitcamp.DTO.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
 #top_detail{
 	float:right;
@@ -18,8 +18,13 @@
 	display:inline-block;
 }
 #sub_detail{
-	background-color:rgb(0,0,0,0.1);
+	margin-left:20%;
+	margin-right:20%;
+	border-top:1px solid silver;
+	border-bottom:1px solid silver;
+	background-color:rgb(0,0,0,0.05);
 	list-style:none;
+	height:27px;
 }
 #sub_detail ul li{
 	display:inline-block;
@@ -35,16 +40,89 @@
 }
 #main_detail ul{
 	list-style:none;
-	width:80%; height:500px;
+	width:100%; height:350px;
 	padding:40px;
+	margin-left:22%;
+}
+#id_reply{
+	margin-left:20%;
+}
+#id_reply ul li{
+	background-color:rgb(0,0,0,0.05);
+	list-style:none;
+	display: inline-block;
+	width:700px;
+	margin: 0px 20px;
+} 
+#id_reply p{
+	background-color:rgb(0,0,0,0.05);
+	list-style:none;
+	display: inline-block;
+	width:255px;
+	margin: 0px 20px;
+} 
+#id_reply input{
+	margin:0px 55px;
+}
+#id_reply textarea{
+	width:600px;
+	margin-left:55px;
 }
 
 </style>
+
+<script>
+$(document).ready(function(){
+	let no=${dto.board_no};
+	
+	$.ajax({
+		    url:'subdetail.do'
+			,data:{'num':no}
+			,dataType:'json'
+			,method:'post'
+			,success:function(data)
+			{
+			    $.each(data, function(index,item){
+					let result="<ul>";
+					result+="<p>"+item.rep_id+"</p>";
+					result+="<li>"+item.rep_content;
+					result+="<input type='button' value='삭제' id='click"+index+"'>";
+					result+="</li></ul>";
+					$('#result').append(result);
+				
+			    	$('#click'+index).click(function(){
+			    		location.href="subdelete.do?rep_no="+item.rep_no+"&board_no="+no;
+			    	});
+			    });
+			}
+			,error:function(data)
+			{
+				console.log('error'+data);
+			}
+	});
+	
+});
+function send()
+{
+	if(document.frm.rep_content.value!="")
+		document.frm.submit();
+}
+function del(rep_no,no)
+{
+	console.log('repno:'+rep_no);
+	console.log('boardno: '+no);
+
+}
+</script>
+
 </head>
 <body>
 <section class="detail">
+<%-- <c:set var="dto" value="${requestScope.dto }"></c:set>
+<c:set var="repdto" value="${requestScope.repdto }"></c:set> --%>
 <%
 	BoardDTO dto=(BoardDTO)request.getAttribute("dto");
+	RepDTO repdto=(RepDTO)request.getAttribute("repdto");
 	String ID=(String)session.getAttribute("sessionId");
 	String name=dto.getMember_id();
 %>
@@ -52,26 +130,40 @@
 <ul>
 <li><a href="list.do">목록으로</a></li>
 <%if(ID.equals(name)) {%>
-<li><a href="modify.do?no=<%=dto.getBoard_no() %>">수정</a></li>
-<li><a href="delete.do?no=<%=dto.getBoard_no() %>">삭제</a></li>
+<li><a href="modify.do?no=${dto.board_no }">수정</a></li>
+<li><a href="delete.do?no=${dto.board_no }">삭제</a></li>
 <%} %>
 </ul>
 </div><br>
 
 <div id="sub_detail">
 <ul>
-	<li class="no"><%=dto.getBoard_no() %></li>
-	<li class="writer"><%=dto.getMember_id() %></li>
-	<li class="title"><%=dto.getBoard_title() %></li>
+	<li class="no">${dto.board_no }</li>
+	<li class="writer">${dto.member_id }</li>
+	<li class="title">${dto.board_title }</li>
 </ul>
 </div>
 <div id="main_detail">
 <ul>
-	<li><%=dto.getBoard_content() %></li>
-	<!-- <li><a href="#">CREATE AGREEMENT</a></li> -->
+	<li>${dto.board_content }</li>
 </ul>
 </div>
+  
+<!-- --------- 여기서부터 댓글달기 ---------- -->
+<div id="id_reply">
+	<form method="post" action="subadd.do" name="frm">
+	<input type="hidden" name="num" value="${dto.board_no }">
+	<input type="text" name="rep_id" placeholder="작성자입력">
+	<textarea rows="1" cols="50" name="rep_content" placeholder="댓글입력"></textarea>
+	<input type="button" onclick="send()" value="추가">
+	</form>
+	
+	<div id="result"></div>
+</div>
+</section>
 
+</body>
+</html>
 
 <%-- <c:set var="dto" value="${requestScope.dto }"></c:set>
 	<tr>
@@ -84,7 +176,7 @@
 	<td>${dto.board_content }</td>
 	<td><a href="#">CREATE AGREEMENT</a></td>
 	</tr> --%>
-</section>
+
 
 <%-- <section class="reple">
 <c:set var="repdto" value="${requestScope.repdto }"></c:set>
@@ -97,8 +189,3 @@
 
 </form>
 </section> --%>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>

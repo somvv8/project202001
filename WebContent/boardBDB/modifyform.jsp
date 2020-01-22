@@ -6,18 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
-ul li{
+#id_modify ul li{
 	text-align: center;
 	list-style: none;
 }
+#board_no{
+	margin:50px 0px 30px 0px;
+	background-color:black;
+	color:white;
+}
 #board_title{
-	width:90%;
+	width:80%;
 	margin-bottom:10px;
+	background-color:rgb(0,0,0,0.1);
 }
 #board_content{
-	width:90%;
+	width:80%; height:500px;
+}
+#modify_btn input{
+	background-color:rgb(0,0,0,0.1);
+	width:100px;
+	margin:5px 10px;
 }
 
 </style>
@@ -25,6 +35,7 @@ ul li{
 <body>
 <% BoardDTO dto=(BoardDTO)request.getAttribute("dto"); %>
 <form method="post" action="modifyresult.do">
+<div id="id_modify">
 <ul>
 	<li>
 		<input type="text" name="board_no" id="board_no" 
@@ -39,14 +50,12 @@ ul li{
 			id="board_content" required="required">
 			<%=dto.getBoard_content()%></textarea>
 	</li>
-	<li>
+	<li id="modify_btn">
 		<input type="submit" value="MODIFY">
 		<input type="reset" value="BACK">
 	</li>
 </ul>
+</div>
 </form>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

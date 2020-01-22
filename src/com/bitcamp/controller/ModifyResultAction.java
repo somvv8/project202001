@@ -37,9 +37,10 @@ public class ModifyResultAction implements Action {
 		int result=service.modifyData(dto);
 		request.setAttribute("result", result);
 		
+		
 		ActionForward f=new ActionForward();
-		f.setForward(true);
-		f.setUrl("/boardBDB/modifyresult.jsp");
+		f.setForward(false);
+		f.setUrl("detail.do?no="+board_no);
 		
 		return f;
 	}//execute
