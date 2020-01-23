@@ -18,9 +18,9 @@ setTimeout("window.location.href='index.do'",3000);
 <body>
 <div id="signupresult">
 <h2>WELCOME! 만나서 반갑습니다</h2><br>
-<h1>로그인하여 BDB를 체험해보세요</h1><br><br>
-<h3>i-SOM</h3><br><br>
-<p>3초후 처음으로 이동합니다</p>
+<h1>로그인하여 BUB를 체험해보세요</h1><br><br>
+<h2>i-SOM</h2><br><br>
+<h1>잠시후 처음으로 이동합니다</h1>
 </div>
 </body>
 </html>

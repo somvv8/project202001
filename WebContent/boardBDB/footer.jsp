@@ -17,7 +17,7 @@
 </head>
 <body>
 <section id="footer">
-	<div>Copyright</div>
+	<div>ⓒ Copyright i-SOM</div>
 </section>
 </body>
 </html>

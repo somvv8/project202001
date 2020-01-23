@@ -56,8 +56,8 @@ ol li{
 <article>
 <ol>
 <li>BOARD for</li>
-<li>DIRECT COMMERCE</li>
-<li>BUYER to BUYER</li>
+<li>USER CREATED</li>
+<li>BEFORE SPRING 2020</li>
 <li>present by i-SOM</li>
 </ol>
 </article>

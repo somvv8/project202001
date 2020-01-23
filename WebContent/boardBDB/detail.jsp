@@ -47,12 +47,17 @@
 #id_reply{
 	margin-left:20%;
 }
+.rep_form{
+	margin: 10px 60px;
+}
 #id_reply ul li{
 	background-color:rgb(0,0,0,0.05);
 	list-style:none;
 	display: inline-block;
 	width:700px;
 	margin: 0px 20px;
+	border-top:1px solid silver;
+	border_bottom:1px solid silver;
 } 
 #id_reply p{
 	background-color:rgb(0,0,0,0.05);
@@ -60,13 +65,18 @@
 	display: inline-block;
 	width:255px;
 	margin: 0px 20px;
+	border-top:1px solid silver;
+	border-bottom:1px solid silver;
 } 
 #id_reply input{
-	margin:0px 55px;
+	margin:0px;
+}
+.del_btn{
+	float:right;
 }
 #id_reply textarea{
-	width:600px;
-	margin-left:55px;
+	width:640px;
+	margin:0px 0px 0px 115px;
 }
 
 </style>
@@ -86,7 +96,7 @@ $(document).ready(function(){
 					let result="<ul>";
 					result+="<p>"+item.rep_id+"</p>";
 					result+="<li>"+item.rep_content;
-					result+="<input type='button' value='삭제' id='click"+index+"'>";
+					result+="<input type='button' value='X' class='del_btn' id='click"+index+"'>";
 					result+="</li></ul>";
 					$('#result').append(result);
 				
@@ -151,7 +161,7 @@ function del(rep_no,no)
   
 <!-- --------- 여기서부터 댓글달기 ---------- -->
 <div id="id_reply">
-	<form method="post" action="subadd.do" name="frm">
+	<form method="post" action="subadd.do" name="frm" class="rep_form">
 	<input type="hidden" name="num" value="${dto.board_no }">
 	<input type="text" name="rep_id" placeholder="작성자입력">
 	<textarea rows="1" cols="50" name="rep_content" placeholder="댓글입력"></textarea>

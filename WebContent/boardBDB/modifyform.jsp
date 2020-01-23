@@ -39,7 +39,7 @@
 <ul>
 	<li>
 		<input type="text" name="board_no" id="board_no" 
-			value="<%=dto.getBoard_no()%>번 글을 수정합니다" readonly>
+			value="<%=dto.getBoard_no()%>" readonly>
 	</li>
 	<li>
 		<input type="text" name="board_title" id="board_title"

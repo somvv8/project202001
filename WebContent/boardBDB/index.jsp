@@ -58,14 +58,12 @@ ol li{
 </head>
 <body>
 
-<!-- <div id="signup"><a href="signup.do">SignUp</a></div> -->
 <section>
 <article>
 <ol>
-<!-- <img class="index_img" src="img/index.jsp" alt="background"> -->
 <li>BOARD for</li>
-<li>DIRECT COMMERCE</li>
-<li>BUYER to BUYER</li>
+<li>USER CREATED</li>
+<li>BEFORE SPRING 2020</li>
 <li>present by i-SOM</li>
 </ol>
 </article>

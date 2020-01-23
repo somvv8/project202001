@@ -30,16 +30,16 @@
 <body>
 <div class="header">
    <div id="wrap">
-       <p><a href="index.do">WELLCOME BDB</a></p>
+       <p><a href="index.do">WELLCOME BUB</a></p>
    </div>
    <c:if test="${sessionScope.sessionId==null }">
    <ul>
-   	<li>LogIn</li><li><a href="signup.do">SignUp</a></li>
+   	<li><a href="#">LogIn</a></li><li><a href="signup.do">SignUp</a></li>
    	</ul>
    </c:if>
    <c:if test="${sessionScope.sessionId!=null }">
    <ul>
-   	<li>LogOut</li><li>MyInfo</li>
+   	<li><a href="#">LogOut</a></li><li><a href="#">MyInfo</a></li>
    	</ul>
    </c:if>
 </div>   
